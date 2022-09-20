@@ -1,0 +1,106 @@
+swagger: "2.0"
+info:
+  description: "Active Directory Integration Service for WorkGraph."
+  version: "1.0.0"
+  title: "AD Integration API Docs"
+  termsOfService: "http://swagger.io/terms/"
+  contact:
+    email: "vadiraja.k@codenation.co.in"
+  license:
+    name: "Apache 2.0"
+    url: "http://www.apache.org/licenses/LICENSE-2.0.html"
+host: "petstore.swagger.io"
+basePath: "/v2"
+tags:
+- name: "APIs"
+  description: "APIs for AD integration"
+schemes:
+- "http"
+paths:
+  /api/check_credentials/:
+    post:
+      tags:
+      - "APIs"
+      summary: "For validating credentials"
+      description: "Used to validate AD credentials, if credentials are valid then sent to admin portal."
+      operationId: "checkcredentials"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Credentials Json that needs to be validated"
+        required: true
+        schema:
+          $ref: "#/definitions/credentials"
+      responses:
+        200:
+          description: "Credentials validated and sent to admin portal"
+        400:
+          description: "Invalid credentials"
+  /api/ad_integration/:
+    post:
+      tags:
+      - "APIs"
+      summary: "For onboarding or update Active Directory"
+      description: ""
+      operationId: "onboard or update"
+      consumes:
+      - "application/json"
+      produces:
+      - "application/json"
+      parameters:
+      - in: "body"
+        name: "body"
+        description: "Onboard data Json"
+        required: true
+        schema:
+          $ref: "#/definitions/onboardjson"
+      responses:
+        200:
+          description: "AD onboard or update done"
+        400:
+          description: "Invalid credentials"
+definitions:
+  credentials:
+    type: "object"
+    properties:
+      credential_field1:
+        type: "integer"
+        format: "int64"
+      credential_field2:
+        type: "string"
+      credential_field3:
+        type: "string"
+      integration_id:
+        type: "integer"
+        format: "int64"
+      state:
+        type: "string"
+    xml:
+      name: "Order"
+  onboardjson:
+    type: "object"
+    properties:
+      credential_field1:
+        type: "integer"
+        format: "int64"
+      credential_field2:
+        type: "string"
+      credential_field3:
+        type: "string"
+      integration_id:
+        type: "integer"
+        format: "int64"
+      state:
+        type: "string"
+      group_id:
+        type: "string"
+      queue_url:
+        type: "string"
+      graph_url:
+        type: "string"
+    xml:
+      name: "Order"
